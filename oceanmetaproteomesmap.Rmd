@@ -22,6 +22,12 @@ setwd("C:/Users/ljabre/OneDrive - Mount Allison University/Desktop/work/science_
 
 ```
 
+some useful links to help with plotting 
+```{r}
+#https://www.benjaminbell.co.uk/2019/08/bathymetric-maps-in-r-getting-and.html
+
+```
+
 OPP
 https://www.oceanproteinportal.org/about-datasets
 
@@ -30,40 +36,58 @@ https://www.oceanproteinportal.org/about-datasets
 alldata <- read.csv ("../oceanmetaproteomesmap/oceanmetaPs.csv")
 ```
 
-
-2025-12-05  make the basemap 
+2026-01-20 -- data quality control and metadata
 ```{r}
-#https://www.benjaminbell.co.uk/2019/08/bathymetric-maps-in-r-getting-and.html
 
 
-alldata <- alldata %>%
-  mutate(Lon_dd = ifelse(Lon_dd > 180, Lon_dd - 360, Lon_dd))
 
 
+```
+
+
+2025-12-05 Global Map
+```{r}
 basemap("DecimalDegree",  bathymetry = F, #bathy.style = "rcb",
-        #grid.col = "NA",
-        glaciers = F) + 
-        geom_spatial_point(data = alldata, 
-                           aes(x = Lon_dd, y = Lat_dd, color = citation), 
-                               size = 2,  alpha = 0.5) 
-
-
-
-
-
-#antarctica
-basemap(limits = -60,  bathymetry = F, #bathy.style = "rcb",
         grid.col = "NA",
         glaciers = F) + 
         geom_spatial_point(data = alldata, 
-                           aes(x = Lon_dd, y = Lat_dd, color = citation), 
+                           aes(x = Lon_dd_W, y = Lat_dd_N, color = citation), 
+                               size = 3,  alpha = 0.7) + 
+  theme(
+    legend.position = "bottom", 
+    legend.title = element_blank())
+```
+
+
+2026-01-20  Southern Ocean / Antarctica
+```{r}
+#antarctica
+basemap(limits = -60,  bathymetry = F, 
+        #grid.col = "NA",
+        glaciers = F) + 
+        geom_spatial_point(data = alldata, 
+                           aes(x = Lon_dd_W, y = Lat_dd_N, color = citation), 
+                              size = 4,  alpha = 0.5) 
+
+```
+
+
+
+2026-01-20  Arctic
+```{r}
+basemap(limits = 30,  bathymetry = F, 
+        glaciers = F) + 
+        geom_spatial_point(data = alldata, 
+                           aes(Lon_dd_W, y = Lat_dd_N, color = citation), 
                                size = 4,  alpha = 0.5) 
 
 
 
-dt <- data.frame(lon = c(170,-150,-150, 170 ), lat = c(40, 70, 70, 40))
 
-basemap (dt)
+#playing around with different perspectives andplotting angles.
+berring_straight <- data.frame(lon = c(170,-150,-150, 170 ), lat = c(40, 70, 70, 40))
+
+basemap (berring_straight)
 
 
 basemap(limits = c(-130, 30, 30, 70))
@@ -73,28 +97,11 @@ basemap(limits = c(-130, 30, 30, 70),  bathymetry = F, #bathy.style = "rcb",
       #  grid.col = "NA",
         glaciers = F) + 
         geom_spatial_point(data = alldata, 
-                           aes(x = Lon_dd, y = Lat_dd, color = citation), 
+                           aes(Lon_dd_W, y = Lat_dd_N, color = citation), 
                                size = 4,  alpha = 0.5) 
-  
-  
-
-
-
-basemap(limits = c(70),  bathymetry = T, #bathy.style = "rcb",
-        grid.col = "NA",
-        glaciers = F) + 
-        geom_spatial_point(data = alldata, 
-                           aes(x = Lon_dd, y = Lat_dd, color = citation), 
-                               size = 4,  alpha = 0.5) 
-
-# 
-#   scale_shape_manual(values = c("Offshore" = 16, "Nearshore" = 17)) +
-#         geom_spatial_label(size = 3.5, fontface = "bold",  aes(label=bioassay_latlon$bioassay, x = bioassay_latlon$lon, #could also be "text"
-#                                                             y = bioassay_latlon$lat), hjust = 1.1, vjust = -0.2, color = "black") +
-#   theme(axis.text = element_blank(), 
-#               axis.ticks.y =element_blank(),
-#               axis.ticks.x =element_blank(),
-#               legend.position = "none") 
 
 ```
+
+
+
 
