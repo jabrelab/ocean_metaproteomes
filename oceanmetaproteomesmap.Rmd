@@ -50,12 +50,26 @@ alldata <- read.csv ("../oceanmetaproteomesmap/oceanmetaPs.csv")
 basemap("DecimalDegree",  bathymetry = F, #bathy.style = "rcb",
         grid.col = "NA",
         glaciers = F) + 
-        geom_spatial_point(data = alldata, 
+        geom_spatial_point(data = subset(alldata, !grepl("sBrum", citation)),
+ 
                            aes(x = Lon_dd_W, y = Lat_dd_N, color = citation), 
                                size = 3,  alpha = 0.7) + 
   theme(
     legend.position = "bottom", 
     legend.title = element_blank())
+
+
+
+
+
+#Zoom in on certain areas 
+basemap(limits = c(90, 100, -70, 70),  bathymetry = F, #bathy.style = "rcb",
+      #  grid.col = "NA",
+        glaciers = F) + 
+        geom_spatial_point(data = alldata, 
+                           aes(Lon_dd_W, y = Lat_dd_N, color = citation), 
+                               size = 4,  alpha = 0.5) 
+
 ```
 
 
@@ -70,7 +84,6 @@ basemap(limits = -60,  bathymetry = F,
                               size = 4,  alpha = 0.5) 
 
 ```
-
 
 
 2026-01-20  Arctic
