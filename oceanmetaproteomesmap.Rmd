@@ -40,26 +40,22 @@ alldata <- read.csv ("../oceanmetaproteomesmap/oceanmetaPs.csv")
 ```{r}
 
 
-
-
 ```
 
 
 2025-12-05 Global Map
 ```{r}
-basemap("DecimalDegree",  bathymetry = F, #bathy.style = "rcb",
+basemap("DecimalDegree",  bathymetry = F, #bathy.style = "raster_continuous_grays",
         grid.col = "NA",
         glaciers = F) + 
         geom_spatial_point(data = subset(alldata, !grepl("sBrum", citation)),
  
                            aes(x = Lon_dd_W, y = Lat_dd_N, color = citation), 
-                               size = 3,  alpha = 0.7) + 
+                               size = 2,  alpha = 0.7) + 
   theme(
-    legend.position = "bottom", 
+   # legend.position = "bottom", 
+    legend.position = "none",
     legend.title = element_blank())
-
-
-
 
 
 #Zoom in on certain areas 
@@ -69,20 +65,26 @@ basemap(limits = c(90, 100, -70, 70),  bathymetry = F, #bathy.style = "rcb",
         geom_spatial_point(data = alldata, 
                            aes(Lon_dd_W, y = Lat_dd_N, color = citation), 
                                size = 4,  alpha = 0.5) 
-
 ```
 
 
 2026-01-20  Southern Ocean / Antarctica
 ```{r}
 #antarctica
-basemap(limits = -60,  bathymetry = F, 
+basemap(limits = -60,  bathymetry = T, 
         #grid.col = "NA",
         glaciers = F) + 
         geom_spatial_point(data = alldata, 
                            aes(x = Lon_dd_W, y = Lat_dd_N, color = citation), 
                               size = 4,  alpha = 0.5) 
 
+
+basemap(limits = c(-90,120,-60,-40),  bathymetry = F, 
+        #grid.col = "NA",
+        glaciers = F) + 
+        geom_spatial_point(data = alldata, 
+                           aes(x = Lon_dd_W, y = Lat_dd_N, color = citation), 
+                              size = 4,  alpha = 0.5) 
 ```
 
 
@@ -112,7 +114,6 @@ basemap(limits = c(-130, 30, 30, 70),  bathymetry = F, #bathy.style = "rcb",
         geom_spatial_point(data = alldata, 
                            aes(Lon_dd_W, y = Lat_dd_N, color = citation), 
                                size = 4,  alpha = 0.5) 
-
 ```
 
 
