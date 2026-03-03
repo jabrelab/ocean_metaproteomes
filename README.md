@@ -1,6 +1,7 @@
 # **Ocean Metaproteomes**
 This repository contains metadata and mapping resources for marine metaproteomics samples collected from oceanographic research efforts.
-Please reach out to Loay Jabre (ljabre@mta.ca) for any inquiries. 
+
+**All questions, comments and feedback are welcome! Please reach out to Loay Jabre for any inquiries (ljabre@mta.ca)**
 
 ## How to cite
 This is in-progress work by Mak Saito, Noelle Held, and Loay Jabre (Saito, Held and Jabre. 2026. In Prep)
