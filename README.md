@@ -2,7 +2,11 @@
 This repository contains metadata and mapping resources for marine metaproteomics samples collected from oceanographic research efforts.
 Please reach out to Loay Jabre (ljabre@mta.ca) for any inquiries. 
 
-<p></p>
+## How to cite
+This work is part of an in-progress publiction by Mak Saito, Loay Jabre, and Noelle Held (Sait, Jabre, and Held. In Prep. 2026)
+
+<br>
+<br>
 
 ## How to contribute 
 **1. Add New Datasets**
@@ -17,5 +21,3 @@ Improve the R Markdown mapping script, add new visualizations, tools, etc.
 
 
 
-## How to cite
-This work is part of an in-progress publiction by Mak Saito, Loay Jabre, and Noelle Held (Sait, Jabre, and Held. In Prep. 2026)
